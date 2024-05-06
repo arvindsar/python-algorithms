@@ -48,7 +48,7 @@ sample = {
     "c": ["a", "e"],
     "d": ["b", "e", "f"],
     "e": ["d", "f"],
-    "f": ["d", "e"],
+    "f": ["d", "e", "z"],
 }
 
 graph = Graph(sample)

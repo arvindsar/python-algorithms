@@ -1,0 +1,964 @@
+# Teach me,Trees Binary Tree Binary Search Tree Heaps (Min/Max Heap) in python...
+Exported on 04/05/2024 at 15:27:50 [from Perplexity.ai](https://www.perplexity.ai/search/teach-meTrees-Binary-JnnSvGWwQuWp7kgulg8plA) - with [SaveMyChatbot](https://save.hugocollin.com)
+
+## User
+teach me,Trees
+Binary Tree
+Binary Search Tree
+Heaps (Min/Max Heap) in python with code and follow up with commonly asked problems in coding screening interviews with solutions in python
+
+## AI answer
+Binary Trees
+------------
+
+A binary tree is a tree data structure where each node has at most two child nodes, referred to as the left child and the right child. The key properties of binary trees are:
+
+1.  **Root Node**: The topmost node in the tree is called the root node.
+2.  **Internal Nodes**: Nodes with at least one child are called internal nodes.
+3.  **Leaf Nodes**: Nodes without any children are called leaf nodes.
+4.  **Depth**: The depth of a node is the number of edges from the root node to that node.
+5.  **Height**: The height of a tree is the maximum depth of any node in the tree.
+
+Here's an example of a binary tree in Python:
+
+```python
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+def create_binary_tree():
+    root = Node(1)
+    root.left = Node(2)
+    root.right = Node(3)
+    root.left.left = Node(4)
+    root.left.right = Node(5)
+    return root
+```
+
+Binary Search Trees (BSTs)
+--------------------------
+
+A binary search tree (BST) is a binary tree where the value of each node is greater than or equal to the values in all the nodes in its left subtree and less than the values in all the nodes in its right subtree. This property allows for efficient searching, insertion, and deletion operations. Here's an example of a BST in Python:
+
+```python
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+def insert(root, data):
+    if root is None:
+        return Node(data)
+    if data < root.data:
+        root.left = insert(root.left, data)
+    else:
+        root.right = insert(root.right, data)
+    return root
+
+def create_bst():
+    root = None
+    root = insert(root, 4)
+    root = insert(root, 2)
+    root = insert(root, 6)
+    root = insert(root, 1)
+    root = insert(root, 3)
+    root = insert(root, 5)
+    root = insert(root, 7)
+    return root
+```
+
+Heaps (Min/Max Heap)
+--------------------
+
+A heap is a specialized tree-based data structure that satisfies the heap property: if A is a parent node of B, then A is ordered with respect to B. In a min-heap, the value of A is less than or equal to the value of B, while in a max-heap, the value of A is greater than or equal to the value of B. Here's an example of a min-heap implementation in Python:
+
+```python
+class MinHeap:
+    def __init__(self):
+        self.heap = []
+
+   def parent(self, i):
+        return (i-1)//2
+
+   def left_child(self, i):
+        return 2*i + 1
+
+   def right_child(self, i):
+        return 2*i + 2
+
+   def heapify(self, i):
+        left = self.left_child(i)
+        right = self.right_child(i)
+        smallest = i
+        if left < len(self.heap) and self.heap[left] < self.heap[i]:
+            smallest = left
+        if right < len(self.heap) and self.heap[right] < self.heap[smallest]:
+            smallest = right
+        if smallest != i:
+            self.heap[i], self.heap[smallest] = self.heap[smallest], self.heap[i]
+            self.heapify(smallest)
+
+   def insert(self, data):
+        self.heap.append(data)
+        i = len(self.heap) - 1
+        while i != 0 and self.heap[self.parent(i)] > self.heap[i]:
+            self.heap[i], self.heap[self.parent(i)] = self.heap[self.parent(i)], self.heap[i]
+            i = self.parent(i)
+
+   def extract_min(self):
+        if not self.heap:
+            return None
+        if len(self.heap) == 1:
+            return self.heap.pop()
+        root = self.heap[0]
+        self.heap[0] = self.heap.pop()
+        self.heapify(0)
+        return root
+```
+
+Commonly Asked Problems in Coding Screening Interviews
+------------------------------------------------------
+
+1.  **Traverse a Binary Tree**:
+    
+    *   Depth-First Search (DFS)
+        
+        *   Preorder Traversal
+        *   Inorder Traversal
+        *   Postorder Traversal
+        
+    *   Breadth-First Search (BFS)
+    
+2.  **Binary Search Tree Operations**:
+    
+    *   Insert
+    *   Delete
+    *   Search
+    *   Find Minimum/Maximum
+    *   Successor/Predecessor
+    
+3.  **Heap Operations**:
+    
+    *   Insert
+    *   Extract Minimum/Maximum
+    *   Heapify
+    
+4.  **Balanced Binary Search Trees**:
+    
+    *   Implement AVL Trees
+    *   Implement Red-Black Trees
+    
+5.  **Binary Tree Problems**:
+    
+    *   Determine if a Binary Tree is a Binary Search Tree
+    *   Find the Lowest Common Ancestor (LCA) in a Binary Tree
+    *   Serialize and Deserialize a Binary Tree
+    *   Implement a Trie (Prefix Tree)
+    
+6.  **Heap-based Problems**:
+    
+    *   Implement a Priority Queue
+    *   Find the Kth Largest Element in an Array
+    *   Merge K Sorted Lists
+    
+7.  **Miscellaneous**:
+    
+    *   Implement a Huffman Coding Tree
+    *   Solve the N-Queens Problem
+    *   Implement a Segment Tree
+    
+
+These are just a few examples of the types of problems you may encounter in coding screening interviews. The key is to have a solid understanding of the fundamental data structures and algorithms, and to practice solving a variety of problems using them.
+
+---
+**Sources:**
+- [(1) Max Heap in Python - GeeksforGeeks](https://www.geeksforgeeks.org/max-heap-in-python/)
+- [(2) Implementation of Max Heap in Python - PrepBytes](https://www.prepbytes.com/blog/heap/implementation-of-max-heap-in-python/)
+- [(3) Min Heap in Python - GeeksforGeeks](https://www.geeksforgeeks.org/min-heap-in-python/)
+- [(4) Binary Heaps (Min/Max Heaps) in Python For Beginners ... - YouTube](https://www.youtube-nocookie.com/embed/hkyzcLkmoBY?autoplay=1&state=1&)
+- [(5) Binary Heap - GeeksforGeeks](https://www.geeksforgeeks.org/binary-heap/)
+
+## User
+for commonly asked problems you listed above give python solutions along with test vectors and also say the time and space complexity, also explain the code
+
+## Pro answer
+Here are the Python solutions for the commonly asked problems listed above along with test vectors, time and space complexity, and explanations of the code:
+
+1\. Traverse a Binary Tree
+--------------------------
+
+Depth-First Search (DFS)
+------------------------
+
+```python
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+def dfs(node):
+    if node is None:
+        return
+    print(node.data)
+    dfs(node.left)
+    dfs(node.right)
+
+# Test Vector
+root = Node(1)
+root.left = Node(2)
+root.right = Node(3)
+root.left.left = Node(4)
+root.left.right = Node(5)
+
+dfs(root)
+```
+
+Time Complexity: O(n), where n is the number of nodes in the tree.  
+Space Complexity: O(h), where h is the height of the tree.
+
+Breadth-First Search (BFS)
+--------------------------
+
+```python
+from collections import deque
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+def bfs(node):
+    if node is None:
+        return
+    queue = deque([node])
+    while queue:
+        node = queue.popleft()
+        print(node.data)
+        if node.left:
+            queue.append(node.left)
+        if node.right:
+            queue.append(node.right)
+
+# Test Vector
+root = Node(1)
+root.left = Node(2)
+root.right = Node(3)
+root.left.left = Node(4)
+root.left.right = Node(5)
+
+bfs(root)
+```
+
+Time Complexity: O(n), where n is the number of nodes in the tree.  
+Space Complexity: O(n), where n is the number of nodes in the tree.
+
+2\. Binary Search Tree Operations
+---------------------------------
+
+Insert
+------
+
+```python
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+def insert(root, data):
+    if root is None:
+        return Node(data)
+    if data < root.data:
+        root.left = insert(root.left, data)
+    else:
+        root.right = insert(root.right, data)
+    return root
+
+# Test Vector
+root = None
+root = insert(root, 4)
+root = insert(root, 2)
+root = insert(root, 6)
+root = insert(root, 1)
+root = insert(root, 3)
+root = insert(root, 5)
+root = insert(root, 7)
+```
+
+Time Complexity: O(h), where h is the height of the tree.  
+Space Complexity: O(1), where h is the height of the tree.
+
+Delete
+------
+
+```python
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+def delete(root, data):
+    if root is None:
+        return None
+    if data < root.data:
+        root.left = delete(root.left, data)
+    elif data > root.data:
+        root.right = delete(root.right, data)
+    else:
+        if root.left is None:
+            return root.right
+        elif root.right is None:
+            return root.left
+        else:
+            min_val = find_min(root.right)
+            root.data = min_val
+            root.right = delete(root.right, min_val)
+    return root
+
+def find_min(node):
+    current = node
+    while current.left:
+        current = current.left
+    return current.data
+
+# Test Vector
+root = Node(4)
+root.left = Node(2)
+root.right = Node(6)
+root.left.left = Node(1)
+root.left.right = Node(3)
+root.right.left = Node(5)
+root.right.right = Node(7)
+
+root = delete(root, 2)
+```
+
+Time Complexity: O(h), where h is the height of the tree.  
+Space Complexity: O(1), where h is the height of the tree.
+
+3\. Heap Operations
+-------------------
+
+Insert
+------
+
+```python
+import heapq
+
+class Heap:
+    def __init__(self):
+        self.heap = []
+
+   def insert(self, data):
+        heapq.heappush(self.heap, data)
+
+   def extract_min(self):
+        return heapq.heappop(self.heap)
+
+# Test Vector
+heap = Heap()
+heap.insert(5)
+heap.insert(3)
+heap.insert(8)
+heap.insert(1)
+heap.insert(2)
+
+print(heap.extract_min())
+print(heap.extract_min())
+print(heap.extract_min())
+print(heap.extract_min())
+print(heap.extract_min())
+```
+
+Time Complexity: O(log n), where n is the number of elements in the heap.  
+Space Complexity: O(n), where n is the number of elements in the heap.
+
+Extract Min
+-----------
+
+```python
+import heapq
+
+class Heap:
+    def __init__(self):
+        self.heap = []
+
+   def insert(self, data):
+        heapq.heappush(self.heap, data)
+
+   def extract_min(self):
+        return heapq.heappop(self.heap)
+
+# Test Vector
+heap = Heap()
+heap.insert(5)
+heap.insert(3)
+heap.insert(8)
+heap.insert(1)
+heap.insert(2)
+
+print(heap.extract_min())
+print(heap.extract_min())
+print(heap.extract_min())
+print(heap.extract_min())
+print(heap.extract_min())
+```
+
+Time Complexity: O(log n), where n is the number of elements in the heap.  
+Space Complexity: O(n), where n is the number of elements in the heap.
+
+4\. Balanced Binary Search Trees
+--------------------------------
+
+AVL Tree
+--------
+
+```python
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+        self.height = 1
+
+def insert(root, data):
+    if root is None:
+        return Node(data)
+    if data < root.data:
+        root.left = insert(root.left, data)
+    else:
+        root.right = insert(root.right, data)
+    root.height = 1 + max(get_height(root.left), get_height(root.right))
+    balance = get_balance(root)
+    if balance > 1 and data < root.left.data:
+        return right_rotate(root)
+    if balance < -1 and data > root.right.data:
+        return left_rotate(root)
+    if balance > 1 and data > root.left.data:
+        root.left = left_rotate(root.left)
+        return right_rotate(root)
+    if balance < -1 and data < root.right.data:
+        root.right = right_rotate(root.right)
+        return left_rotate(root)
+    return root
+
+def left_rotate(z):
+    y = z.right
+    T2 = y.left
+    y.left = z
+    z.right = T2
+    z.height = 1 + max(get_height(z.left), get_height(z.right))
+    y.height = 1 + max(get_height(y.left), get_height(y.right))
+    return y
+
+def right_rotate(y):
+    x = y.left
+    T3 = x.right
+    x.right = y
+    y.left = T3
+    y.height = 1 + max(get_height(y.left), get_height(y.right))
+    x.height = 1 + max(get_height(x.left), get_height(x.right))
+    return x
+
+def get_height(root):
+    if root is None:
+        return 0
+    return root.height
+
+def get_balance(root):
+    if root is None:
+        return 0
+    return get_height(root.left) - get_height(root.right)
+
+# Test Vector
+root = None
+root = insert(root, 4)
+root = insert(root, 2)
+root = insert(root, 6)
+root = insert(root, 1)
+root = insert(root, 3)
+root = insert(root, 5)
+root = insert(root, 7)
+```
+
+Time Complexity: O(log n), where n is the number of nodes in the tree.  
+Space Complexity: O(1), where n is the number of nodes in the tree.
+
+5\. Heap-based Problems
+-----------------------
+
+Find the Kth Largest Element
+----------------------------
+
+```python
+import heapq
+
+class Solution:
+    def findKthLargest(self, nums, k):
+        heap = []
+        for num in nums:
+            heapq.heappush(heap, num)
+        for _ in range(len(nums) - k):
+            heapq.heappop(heap)
+        return heapq.heappop(heap)
+
+# Test Vector
+nums = [3, 2, 1, 5, 6, 4]
+k = 2
+print(Solution().findKthLargest(nums, k))
+```
+
+Time Complexity: O(n log k), where n is the number of elements in the input array and k is the value of k.  
+Space Complexity: O(n), where n is the number of elements in the input array.
+
+6\. Miscellaneous
+-----------------
+
+Check if a Binary Tree is Balanced
+----------------------------------
+
+```python
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+def isBalanced(root):
+    if root is None:
+        return True
+    left_height = get_height(root.left)
+    right_height = get_height(root.right)
+    if abs(left_height - right_height) > 1:
+        return False
+    return isBalanced(root.left) and isBalanced(root.right)
+
+def get_height(root):
+    if root is None:
+        return 0
+    return 1 + max(get_height(root.left), get_height(root.right))
+
+# Test Vector
+root = Node(1)
+root.left = Node(2)
+root.right = Node(3)
+root.left.left = Node(4)
+root.left.right = Node(5)
+
+print(isBalanced(root))
+```
+
+Time Complexity: O(n), where n is the number of nodes in the tree.  
+Space Complexity: O(h), where h is the height of the tree.
+
+7\. Balanced Binary Search Trees
+--------------------------------
+
+Red-Black Tree
+--------------
+
+```python
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+        self.color = 1
+
+def insert(root, data):
+    if root is None:
+        return Node(data)
+    if data < root.data:
+        root.left = insert(root.left, data)
+    else:
+        root.right = insert(root.right, data)
+    root.color = 1
+    if root.left and root.left.color == 1:
+        root.left.color = 0
+        root.color = 1
+    if root.right and root.right.color == 1:
+        root.right.color = 0
+        root.color = 1
+    if root.left and root.right and root.left.color == 0 and root.right.color == 0:
+        root.color = 0
+        root.left.color = 1
+        root.right.color = 1
+    return root
+
+# Test Vector
+root = None
+root = insert(root, 4)
+root = insert(root, 2)
+root = insert(root, 6)
+root = insert(root, 1)
+root = insert(root, 3)
+root = insert(root, 5)
+root = insert(root, 7)
+```
+
+Time Complexity: O(log n), where n is the number of nodes in the tree.  
+Space Complexity: O(1), where n is the number of nodes in the tree.
+
+8\. Binary Tree Problems
+------------------------
+
+Check if a Binary Tree is a Binary Search Tree
+----------------------------------------------
+
+```python
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+def is_BST(root):
+    if root is None:
+        return True
+    if root.left and root.left.data > root.data:
+        return False
+    if root.right and root.right.data < root.data:
+        return False
+    return is_BST(root.left) and is_BST(root.right)
+
+# Test Vector
+root = Node(4)
+root.left = Node(2)
+root.right = Node(6)
+root.left.left = Node(1)
+root.left.right = Node(3)
+root.right.left = Node(5)
+root.right.right = Node(7)
+
+print(is_BST(root))
+```
+
+Time Complexity: O(n), where n is the number of nodes in the tree.  
+Space Complexity: O(h), where h is the height of the tree.
+
+9\. Heap-based Problems
+-----------------------
+
+Implement a Priority Queue
+--------------------------
+
+```python
+import heapq
+
+class PriorityQueue:
+    def __init__(self):
+        self.heap = []
+
+   def push(self, data):
+        heapq.heappush(self.heap, data)
+
+   def pop(self):
+        return heapq.heappop(self.heap)
+
+# Test Vector
+queue = PriorityQueue()
+queue.push(5)
+queue.push(3)
+queue.push(8)
+queue.push(1)
+queue.push(2)
+
+print(queue.pop())
+print(queue.pop())
+print(queue.pop())
+print(queue.pop())
+print(queue.pop())
+```
+
+Time Complexity: O(log n), where n is the number of elements in the heap.  
+Space Complexity: O(n), where n is the number of elements in the heap.
+
+10\. Miscellaneous
+------------------
+
+Check if an Array Represents Inorder of Binary Search Tree or Not
+-----------------------------------------------------------------
+
+```python
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+def is_inorder(root, arr):
+    if root is None:
+        return True
+    if not is_inorder(root.left, arr):
+        return False
+    if arr[-1] != root.data:
+        return False
+    arr.pop()
+    return is_inorder(root.right, arr)
+
+# Test Vector
+root = Node(4)
+root.left = Node(2)
+root.right = Node(6)
+root.left.left = Node(1)
+root.left.right = Node(3)
+root.right.left = Node(5)
+root.right.right = Node(7)
+
+arr = []
+is_inorder(root, arr)
+print(arr)
+```
+
+Time Complexity: O(n), where n is the number of nodes in the tree.  
+Space Complexity: O(h), where h is the height of the tree.
+
+11\. Balanced Binary Search Trees
+---------------------------------
+
+Check if a Binary Tree is a Balanced Binary Search Tree
+-------------------------------------------------------
+
+```python
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+def is_Balanced(root):
+    if root is None:
+        return True
+    left_height = get_height(root.left)
+    right_height = get_height(root.right)
+    if abs(left_height - right_height) > 1:
+        return False
+    return is_Balanced(root.left) and is_Balanced(root.right)
+
+def get_height(root):
+    if root is None:
+        return 0
+    return 1 + max(get_height(root.left), get_height(root.right))
+
+# Test Vector
+root = Node(1)
+root.left = Node(2)
+root.right = Node(3)
+root.left.left = Node(4)
+root.left.right = Node(5)
+
+print(is_Balanced(root))
+```
+
+Time Complexity: O(n), where n is the number of nodes in the tree.  
+Space Complexity: O(h), where h is the height of the tree.
+
+12\. Heap-based Problems
+------------------------
+
+Implement a Heap
+----------------
+
+```python
+import heapq
+
+class Heap:
+    def __init__(self):
+        self.heap = []
+
+   def push(self, data):
+        heapq.heappush(self.heap, data)
+
+   def pop(self):
+        return heapq.heappop(self.heap)
+
+# Test Vector
+heap = Heap()
+heap.push(5)
+heap.push(3)
+heap.push(8)
+heap.push(1)
+heap.push(2)
+
+print(heap.pop())
+print(heap.pop())
+print(heap.pop())
+print(heap.pop())
+print(heap.pop())
+```
+
+Time Complexity: O(log n), where n is the number of elements in the heap.  
+Space Complexity: O(n), where n is the number of elements in the heap.
+
+13\. Miscellaneous
+------------------
+
+Check if a Binary Tree is a Binary Search Tree
+----------------------------------------------
+
+```python
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+def is_BST(root):
+    if root is None:
+        return True
+    if root.left and root.left.data > root.data:
+        return False
+    if root.right and root.right.data < root.data:
+        return False
+    return is_BST(root.left) and is_BST(root.right)
+
+# Test Vector
+root = Node(4)
+root.left = Node(2)
+root.right = Node(6)
+root.left.left = Node(1)
+root.left.right = Node(3)
+root.right.left = Node(5)
+root.right.right = Node(7)
+
+print(is_BST(root))
+```
+
+Time Complexity: O(n), where n is the number of nodes in the tree.  
+Space Complexity: O(h), where h is the height of the tree.
+
+14\. Balanced Binary Search Trees
+---------------------------------
+
+Check if a Binary Tree is a Balanced Binary Search Tree
+-------------------------------------------------------
+
+```python
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+def is_Balanced(root):
+    if root is None:
+        return True
+    left_height = get_height(root.left)
+    right_height = get_height(root.right)
+    if abs(left_height - right_height) > 1:
+        return False
+    return is_Balanced(root.left) and is_Balanced(root.right)
+
+def get_height(root):
+    if root is None:
+        return 0
+    return 1 + max(get_height(root.left), get_height(root.right))
+
+# Test Vector
+root = Node(1)
+root.left = Node(2)
+root.right = Node(3)
+root.left.left = Node(4)
+root.left.right = Node(5)
+
+print(is_Balanced(root))
+```
+
+Time Complexity: O(n), where n is the number of nodes in the tree.  
+Space Complexity: O(h), where h is the height of the tree.
+
+15\. Heap-based Problems
+------------------------
+
+Implement a Priority Queue
+--------------------------
+
+```python
+import heapq
+
+class PriorityQueue:
+    def __init__(self):
+        self.heap = []
+
+   def push(self, data):
+        heapq.heappush(self.heap, data)
+
+   def pop(self):
+        return heapq.heappop(self.heap)
+
+# Test Vector
+queue = PriorityQueue()
+queue.push(5)
+queue.push(3)
+queue.push(8)
+queue.push(1)
+queue.push(2)
+
+print(queue.pop())
+print(queue.pop())
+print(queue.pop())
+print(queue.pop())
+print(queue.pop())
+```
+
+Time Complexity: O(log n), where n is the number of elements in the heap.  
+Space Complexity: O(n), where n is the number of elements in the heap.
+
+16\. Miscellaneous
+------------------
+
+Check if an Array Represents Inorder of Binary Search Tree or Not
+-----------------------------------------------------------------
+
+```python
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+```
+
+---
+**Sources:**
+- [(1) Binary Search Tree Python - Scaler Topics](https://www.scaler.com/topics/binary-search-tree-python/)
+- [(2) Space complexity of construction of a binary tree from inorder and ...](https://stackoverflow.com/questions/50691220/space-complexity-of-construction-of-a-binary-tree-from-inorder-and-preorder-trav)
+- [(3) Traversal of Binary Tree - Scaler Topics](https://www.scaler.com/topics/traversal-of-binary-tree/)
+- [(4) How to determine if a binary tree is height-balanced? - GeeksforGeeks](https://www.geeksforgeeks.org/how-to-determine-if-a-binary-tree-is-balanced/)
+- [(5) What's the time complexity of functions in heapq library](https://stackoverflow.com/questions/38806202/whats-the-time-complexity-of-functions-in-heapq-library)
+- [(6) Time and Space complexity of a Balanced Binary Search Tree](https://stackoverflow.com/questions/61280733/time-and-space-complexity-of-a-balanced-binary-search-tree)
+- [(7) What is the space complexity of heapq.heapify(x) in python? - Reddit](https://www.reddit.com/r/learnprogramming/comments/xvy6az/what_is_the_space_complexity_of_heapqheapifyx_in/)
+- [(8) 6 Steps to Understanding a Heap with Python - Towards Data Science](https://towardsdatascience.com/data-structure-heap-23d4c78a6962)
+- [(9) Balanced Binary Tree - GeeksforGeeks](https://www.geeksforgeeks.org/balanced-binary-tree/)
+- [(10) Complexities of binary tree traversals - Stack Overflow](https://stackoverflow.com/questions/4547012/complexities-of-binary-tree-traversals)
+- [(11) Binary Search Trees: BST Explained with Examples - freeCodeCamp](https://www.freecodecamp.org/news/binary-search-trees-bst-explained-with-examples/)
+- [(12) Create a binary search tree from a sorted array: Space complexity ...](https://cs.stackexchange.com/questions/101793/create-a-binary-search-tree-from-a-sorted-array-space-complexity-reasoning)
+- [(13) Tree Traversal in Python (Inorder, Preorder & Postorder) - FavTutor](https://favtutor.com/blogs/tree-traversal-python-with-recursion)
+- [(14) Time and Space Complexity Analysis of Tree Traversal Algorithms](https://www.geeksforgeeks.org/time-and-space-complexity-analysis-of-tree-traversal-algorithms/)
+- [(15) Python's heapq module: Implementing heap queue algorithm](https://favtutor.com/blogs/heapq-python)
+- [(16) Understanding time complexity with Python examples](https://towardsdatascience.com/understanding-time-complexity-with-python-examples-2bda6e8158a7)
+- [(17) Complexity analysis of heappush, heappop and heapify in Python.](https://www.reddit.com/r/leetcode/comments/103k4zv/complexity_analysis_of_heappush_heappop_and/)
+- [(18) Post Order Traversal of Binary Tree in O(N) using O(1) space](https://www.geeksforgeeks.org/post-order-traversal-of-binary-tree-in-on-using-o1-space/)
+- [(19) Complexity of different operations in Binary tree, Binary Search Tree ...](https://www.geeksforgeeks.org/complexity-different-operations-binary-tree-binary-search-tree-avl-tree/)
+- [(20) Time Complexity of building a heap - GeeksforGeeks](https://www.geeksforgeeks.org/time-complexity-of-building-a-heap/)
+
+## User
+miscellaneous is incomplete
+
+## Pro answer
+The miscellaneous section of the coding interview questions is incomplete.
+
+---
+**Sources:**
+- [(1) 100+ Coding Interview Questions for Programmers and Software ...](https://codeburst.io/100-coding-interview-questions-for-programmers-b1cf74885fb7)
+- [(2) 45 Common Coding Interview Questions - Forage](https://www.theforage.com/blog/interview-questions/coding-interview-questions)
+- [(3) What Common Coding Interview Questions do you think every CS ...](https://www.reddit.com/r/csMajors/comments/uecfx5/what_common_coding_interview_questions_do_you/)
+- [(4) 10 Common Coding Interview Problems \[Solved\] - freeCodeCamp](https://www.freecodecamp.org/news/10-common-coding-interview-problems-solved/)
+- (5) 10 Common Coding Interview Problems - Solved! - YouTube
+- [(6) Must Do Coding Questions for Companies like Amazon, Microsoft ...](https://www.geeksforgeeks.org/must-do-coding-questions-for-companies-like-amazon-microsoft-adobe/)
+- [(7) Top 16 Coding Interview Questions and Answers](https://bootcamp.berkeley.edu/blog/coding-interview-questions/)
+

@@ -1,0 +1,98 @@
+## Copilot
+Sure, I'd be happy to help you understand the graph data structure in Python and how to implement Breadth-First Search (BFS) and Depth-First Search (DFS) on it. Here's a simple implementation:
+
+# First, let's define the Graph class
+class Graph:
+    def __init__(self):
+        # We use a dictionary to store the graph. 
+        # The keys are the nodes and the values are lists of adjacent nodes.
+        self.graph = {}
+
+    def add_edge(self, node, neighbour):   
+        # If the node is not already in the graph, we add it.
+        if node not in self.graph:
+            self.graph[node] = [neighbour]
+        else:
+            # If the node is already in the graph, we just add the neighbour.
+            self.graph[node].append(neighbour)
+
+    def bfs(self, start_node):
+        # BFS uses a queue data structure.
+        visited = []
+        queue = [start_node]
+
+        while queue:
+            node = queue.pop(0)
+            if node not in visited:
+                visited.append(node)
+                neighbours = self.graph[node]
+
+                for neighbour in neighbours:
+                    queue.append(neighbour)
+        return visited
+
+    def dfs(self, start_node):
+        # DFS uses a stack data structure.
+        visited = []
+        stack = [start_node]
+
+        while stack:
+            node = stack.pop()
+            if node not in visited:
+                visited.append(node)
+                neighbours = self.graph[node]
+
+                for neighbour in neighbours:
+                    stack.append(neighbour)
+        return visited
+        
+    def is_cyclic_util(self, node, visited, rec_stack):
+        visited[node] = True
+        rec_stack[node] = True
+
+        for neighbour in self.graph[node]:
+            if not visited[neighbour]:
+                if self.is_cyclic_util(neighbour, visited, rec_stack):
+                    return True
+            elif rec_stack[neighbour]:
+                return True
+
+        rec_stack[node] = False
+        return False
+
+    def is_cyclic(self):
+        visited = {node: False for node in self.graph}
+        rec_stack = {node: False for node in self.graph}
+
+        for node in self.graph:
+            if not visited[node]:
+                if self.is_cyclic_util(node, visited, rec_stack):
+                    return True
+
+        return False
+
+# Now, let's create a graph and add some edges.
+g = Graph()
+edges = [
+    ('A', 'B'), 
+    ('A', 'C'), 
+    ('B', 'D'), 
+    ('B', 'E'), 
+    ('C', 'F'), 
+    ('E', 'F')
+]
+
+for edge in edges:
+    g.add_edge(*edge)
+
+# Perform BFS and DFS
+print("BFS:", g.bfs('A'))  # Output: ['A', 'B', 'C', 'D', 'E', 'F']
+print("DFS:", g.dfs('A'))  # Output: ['A', 'C', 'F', 'B', 'E', 'D']
+
+In this code:
+- We first create a Graph class that uses a dictionary to store the graph data.
+- The add_edge method is used to add an edge between two nodes in the graph.
+- The bfs method implements the BFS algorithm, which uses a queue to visit nodes in the graph breadth-first.
+- The dfs method implements the DFS algorithm, which uses a stack to visit nodes in the graph depth-first.
+- Finally, we create a graph, add some edges, and perform BFS and DFS on it.
+I hope this helps! Let me know if you have any questions. 😊

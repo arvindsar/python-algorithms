@@ -1,0 +1,134 @@
+## Copilot
+Sure, here are the Python solutions for the problems I mentioned:
+- Parenthesis Checker:
+
+def is_valid_parentheses(s):
+    stack = []
+    mapping = {")": "(", "}": "{", "]": "["}
+    for char in s:
+        if char in mapping:
+            top_element = stack.pop() if stack else '#'
+            if mapping[char] != top_element:
+                return False
+        else:
+            stack.append(char)
+    return not stack
+
+print(is_valid_parentheses("()[]{}"))  # Expected output: True
+print(is_valid_parentheses("(]"))  # Expected output: False
+print(is_valid_parentheses("([)]"))  # Expected output: False
+print(is_valid_parentheses("{[]}"))  # Expected output: True
+
+
+- Reverse a String using Stack:
+
+def reverse_string(s):
+    stack = list(s)
+    result = ''
+    while len(stack):
+        result += stack.pop()
+    return result
+
+print(reverse_string("Hello"))  # Expected output: "olleH"
+print(reverse_string("World"))  # Expected output: "dlroW"
+
+- Check for balanced parentheses in an expression:
+
+def are_parentheses_balanced(expr):
+    stack = []
+    for char in expr:
+        if char in ["(", "{", "["]:
+            stack.append(char)
+        else:
+            if not stack:
+                return False
+            current_char = stack.pop()
+            if current_char == '(':
+                if char != ")":
+                    return False
+            if current_char == '{':
+                if char != "}":
+                    return False
+            if current_char == '[':
+                if char != "]":
+                    return False
+    if stack:
+        return False
+    return True
+
+print(are_parentheses_balanced("{()}[]"))  # Expected output: True
+print(are_parentheses_balanced("{(})"))  # Expected output: False
+
+
+- Implement a queue using two stacks:
+
+class Queue:
+    def __init__(self):
+        self.stack1 = []
+        self.stack2 = []
+
+    def enQueue(self, x):
+        while len(self.stack1) != 0:
+            self.stack2.append(self.stack1[-1])
+            self.stack1.pop()
+        self.stack1.append(x)
+        while len(self.stack2) != 0:
+            self.stack1.append(self.stack2[-1])
+            self.stack2.pop()
+
+    def deQueue(self):
+        if len(self.stack1) == 0:
+            return
+        x = self.stack1[-1]
+        self.stack1.pop()
+        return x
+
+q = Queue()
+q.enQueue(1)
+q.enQueue(2)
+print(q.deQueue())  # Expected output: 1
+print(q.deQueue())  # Expected output: 2
+
+
+
+- Implement Stack using Queues:
+
+from queue import Queue
+
+class Stack:
+    def __init__(self):
+        self.q1 = Queue()
+        self.q2 = Queue()
+        self.curr_size = 0
+
+    def push(self, x):
+        self.curr_size += 1
+        self.q2.put(x)
+        while not self.q1.empty():
+            self.q2.put(self.q1.queue[0])
+            self.q1.get()
+        self.q = self.q1
+        self.q1 = self.q2
+        self.q2 = self.q
+
+    def pop(self):
+        if self.q1.empty():
+            return
+        self.q1.get()
+        self.curr_size -= 1
+
+    def top(self):
+        if self.q1.empty():
+            return
+        return self.q1.queue[0]
+
+
+s = Stack()
+s.push(1)
+s.push(2)
+print(s.top())  # Expected output: 2
+s.pop()
+print(s.top())  # Expected output: 1
+
+
+Please note that these are just basic implementations. Depending on the specific requirements of your interview, you may need to modify or extend these solutions. Also, it's always a good idea to understand the logic behind these solutions rather than just memorizing the code. Happy coding! 😊

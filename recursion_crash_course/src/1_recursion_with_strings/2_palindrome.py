@@ -26,13 +26,13 @@ def is_palindrome(s):
         return True
     
     last_char_idx = len(s) - 1
-    if s[0] == s[last_char_idx]:
-        return is_palindrome(s[1 : last_char_idx])
+    if s[0] == s[-1]:
+        return is_palindrome(s[1 : -1])
     
     return False
 
 
-print(is_palindrome("kayak")) # True
+# print(is_palindrome("kayak")) # True
 print(is_palindrome("racecar")) # True
 print(is_palindrome("bollocks")) # False
-print(is_palindrome("madam")) # True
+# print(is_palindrome("madam")) # True

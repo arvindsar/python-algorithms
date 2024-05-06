@@ -7,7 +7,6 @@ class Heap:
     # Time Complexity --> O(1)
     # Space Complexity --> O(n)
     def __init__(self, size, heapType = MIN):
-        super().__init__()
         self.items = (size+1) * [None]
         self.heapSize = 0
         self.maxSize = size + 1
